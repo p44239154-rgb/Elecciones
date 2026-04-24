@@ -1,4 +1,4 @@
-/* Variables de color Cyber */
+/* --- 1. VARIABLES Y BASE --- */
 :root {
     --dark-bg: #0b0f19;
     --card-bg: #161b22;
@@ -12,86 +12,124 @@ body {
     color: var(--text-main);
     font-family: 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    padding: 20px;
-    /* Asegura que el contenido respire y esté centrado si es necesario */
+    padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     text-align: center;
-    padding: 40px 0;
-}
-
-.jne-logo {
-    width: 80px;
-    margin-bottom: 15px;
+    padding: 30px 0 10px 0;
 }
 
 header h1 {
     font-size: 2.2rem;
     color: var(--neon-accent);
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
-    margin: 0;
+    text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
-header p { color: var(--text-dim); }
+/* --- 2. BARRA DE NAVEGACIÓN Y DESPLEGABLES --- */
+.navbar-blue {
+    background: rgba(11, 15, 25, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--neon-accent);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-/* --- GRID DE PARTIDOS (INICIO) --- */
+/* Cambia esto */
+.navbar-blue > ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-blue ul li { position: relative; }
+
+.navbar-blue ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 18px 20px;
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.navbar-blue ul li a:hover {
+    color: var(--neon-accent);
+    background: rgba(0, 242, 255, 0.05);
+}
+
+/* --- 3. INICIO: GRID DE PARTIDOS (CORREGIDO) --- */
 .grid-partidos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
+/* --- 3. INICIO: GRID DE PARTIDOS (CORREGIDO) --- */
 .card-partido {
     background: var(--card-bg);
     border: 1px solid #30363d;
     border-radius: 12px;
-    padding: 15px;
-    text-decoration: none;
-    color: white;
+    padding: 25px 15px;
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 0.3s;
+}
+
+/* ESTA ES LA PARTE CLAVE: */
+.card-partido, 
+.card-partido span, 
+.card-partido:visited {
+    color: #ffffff !important; /* Fuerza el color blanco */
+    text-decoration: none;
 }
 
 .card-partido img {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     background: white;
-    padding: 5px;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-.card-partido h3 {
-    font-size: 0.85rem;
-    margin: 0;
-    text-align: center;
+.card-partido span {
+    font-size: 0.9rem;
+    font-weight: bold;
     line-height: 1.2;
 }
 
 .card-partido:hover {
     transform: translateY(-5px);
     border-color: var(--neon-accent);
-    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-    background: #1c2128;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
 }
 
-/* --- PÁGINA DE CATEGORÍAS (CÍRCULOS) --- */
+/* --- 4. CATEGORÍAS (CÍRCULOS) --- */
 .flex-circulos {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 40px;
-    margin-top: 100px;
+    gap: 30px;
+    padding: 60px 20px;
 }
 
 .circulo {
@@ -106,54 +144,46 @@ header p { color: var(--text-dim); }
     color: white;
     font-weight: bold;
     text-align: center;
-    padding: 10px;
+    padding: 15px;
+    background: rgba(0, 242, 255, 0.02);
     transition: 0.4s;
-    background: rgba(0, 242, 255, 0.05);
 }
 
 .circulo:hover {
     background: var(--neon-accent);
-    color: #000;
+    color: #0b0f19;
+    transform: scale(1.1);
     box-shadow: 0 0 30px var(--neon-accent);
 }
 
-/* --- SECCIÓN DE CANDIDATOS (PRESIDENTES Y SENADORES) --- */
+/* --- 5. CANDIDATOS: TARJETAS CON FOTO --- */
 .grid-candidatos {
-    display: grid;
-    /* Ajustado para que se centre si hay pocos elementos */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 320px)); 
-    justify-content: center; /* ESTO CENTRA LAS IMÁGENES AL MEDIO */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 30px;
-    padding: 40px;
-    max-width: 1300px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 40px 20px;
 }
 
 .card-candidato {
-    background: linear-gradient(145deg, #161b22, #0d1117);
+    background: #10141d;
     border: 2px solid #30363d;
-    border-radius: 20px;
+    border-radius: 24px; /* Bordes muy redondeados */
+    width: 320px;
     overflow: hidden;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
+    transition: 0.4s;
 }
 
 .card-candidato:hover {
-    transform: translateY(-12px);
+    transform: translateY(-10px);
     border-color: var(--neon-accent);
-    box-shadow: 0 0 30px rgba(0, 242, 255, 0.3), 
-                0 0 10px rgba(0, 242, 255, 0.1);
 }
 
 .foto-marco {
-    width: 100%;
-    height: 380px;
     position: relative;
-    overflow: hidden;
-    background: #000;
+    width: 100%;
+    height: 400px;
 }
 
 .foto-marco img {
@@ -161,93 +191,113 @@ header p { color: var(--text-dim); }
     height: 100%;
     object-fit: cover;
     object-position: top;
-    transition: transform 0.6s ease, filter 0.6s ease;
-    filter: grayscale(20%) contrast(1.1); 
 }
 
-.foto-marco::after {
-    content: "";
+.cargo-badge {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(to top, rgba(0, 242, 255, 0.4), transparent);
-    pointer-events: none;
-    transition: opacity 0.4s;
-}
-
-.card-candidato:hover .foto-marco img {
-    transform: scale(1.1) rotate(1deg);
-    filter: grayscale(0%) contrast(1.2) brightness(1.1);
-}
-
-.card-candidato:hover .foto-marco::after {
-    opacity: 0.8;
-}
-
-.info-candidato {
-    padding: 25px 15px;
-    text-align: center;
-    position: relative;
-    background: #161b22;
-}
-
-.info-candidato .numero {
-    position: absolute;
-    top: -25px;
+    bottom: 20px;
     right: 20px;
     background: var(--neon-accent);
     color: #0b0f19;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 1.2rem;
-    border-radius: 50%;
-    border: 4px solid #161b22;
+    border: 3px solid #10141d;
     box-shadow: 0 0 15px var(--neon-accent);
-    z-index: 2;
 }
 
-.info-candidato h3 {
-    margin: 5px 0;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--neon-accent);
-}
-
-.info-candidato p {
-    margin: 5px 0 0;
-    color: var(--text-dim);
-    font-weight: 300;
-    font-size: 0.85rem;
-}
-
-/* --- BOTÓN VOLVER --- */
-.btn-back {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 12px 25px;
-    border: 2px solid var(--neon-accent);
-    color: var(--neon-accent);
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s;
+.info-candidato {
+    padding: 20px;
     text-align: center;
 }
 
-.btn-back:hover {
-    background: var(--neon-accent);
-    color: #000;
-    box-shadow: 0 0 20px var(--neon-accent);
+.info-candidato h3 {
+    color: var(--neon-accent);
+    margin: 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
 }
 
+.info-candidato p {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* --- 6. FOOTER Y OTROS --- */
+footer {
+    padding: 30px;
+    text-align: center;
+    border-top: 1px solid #30363d;
+    margin-top: auto;
+}
+
+.autor {
+    color: var(--neon-accent);
+    font-weight: 900;
+}
+/* --- 7. LISTA DE DIPUTADOS (ESTILO RANKING) --- */
+.lista-candidatos {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre filas */
+}
+
+.fila-candidato {
+    background: #161b22; /* Color de fondo oscuro */
+    border: 1px solid #30363d;
+    border-radius: 50px; /* Bordes muy redondeados como en la imagen */
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.fila-candidato:hover {
+    border-color: var(--neon-accent);
+    transform: translateX(10px); /* Efecto de desplazamiento al pasar el mouse */
+    background: rgba(0, 242, 255, 0.05);
+}
+
+.candidato-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    border: 2px solid #30363d;
+}
+
+.candidato-info {
+    flex-grow: 1; /* Hace que la info ocupe el espacio central */
+}
+
+.candidato-info h4 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.candidato-info p {
+    color: #8b949e;
+    margin: 2px 0 0 0;
+    font-size: 0.85rem;
+}
+
+.candidato-numero {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--neon-accent); /* Color neón para el número */
+    opacity: 0.8;
+}
 /* --- FORMATO DE LISTA PARA DIPUTADOS --- */
 .lista-diputados {
     display: flex;
@@ -322,52 +372,168 @@ header p { color: var(--text-dim); }
     opacity: 1;
     text-shadow: 0 0 10px var(--neon-accent);
 }
-
-/* --- FOOTER MODERNO Y ANIMADO --- */
-footer {
-    margin-top: 50px;
-    padding: 30px;
-    text-align: center;
-    border-top: 1px solid #30363d;
-    width: 100%;
+/* 1. Asegurar que el contenedor padre no limite el contenido */
+.navbar-blue ul li.dropdown {
+    position: relative;
 }
 
-.footer-content p {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+/* Estilo del submenú oculto */
+.dropdown-content {
+    display: none;            /* Mantiene el menú oculto */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #161b22; 
+    min-width: 200px;
+    border: 1px solid var(--neon-accent);
+    border-radius: 0 0 8px 8px;
+    z-index: 9999;
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
-.autor {
-    display: inline-block;
-    font-weight: 900;
-    position: relative;
-    cursor: default;
-    
-    /* Efecto de degradado */
-    background: linear-gradient(90deg, #00f2ff, #0077ff, #00f2ff);
-    background-size: 200% auto;
-    
-    /* Recorte de texto (Aquí estaba el warning) */
-    -webkit-background-clip: text;
-    background-clip: text; 
-    -webkit-text-fill-color: transparent;
-    
-    /* Animación y transiciones */
-    animation: flow 3s linear infinite;
-    transition: transform 0.3s ease, filter 0.3s ease;
+/* Fuerza a que los elementos se pongan uno debajo de otro */
+.dropdown-content li {
+    width: 100%;
+    display: block !important; 
+}
+
+/* Mostrar al pasar el mouse */
+.dropdown:hover .dropdown-content {
+    display: block !important;
+
+
+}
+.carousel {
+    width: 400px;
+    height: 250px;
+    overflow: hidden; /* 🔥 esto oculta las demás */
+    margin: auto;
+    border-radius: 10px;
+}
+
+.track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%; /* 🔥 ocupa TODO el carrusel */
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.pie-pagina {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.redes-sociales {
+    margin-bottom: 10px;
+}
+
+.icono {
+    color: white;
+    font-size: 24px;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 /* Efecto al pasar el mouse */
-.autor:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 8px var(--neon-accent));
+.icono:hover {
+    color: #007bff; /* Cambia al color de tu preferencia */
 }
 
-/* Movimiento del brillo */
-@keyframes flow {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
+.pie-pagina {
+    background-color: #618ab3; /* O el color que estés usando */
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #00447b; /* Azul institucional */
 }
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.qr-code img {
+    border: 5px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+}
+
+.qr-code p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+
+
+
+
+/* Burbuja flotante */
+#chat-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00447b;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+#chat-bubble:hover { transform: scale(1.1); }
+
+/* Ventana de chat */
+#chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: rgb(56, 11, 219);
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.hidden { display: none !important; }
+
+.chat-header { background: #00447b; color: white; padding: 15px; display: flex; justify-content: space-between; }
+
+#chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; font-size: 14px; }
+
+.chat-footer { display: flex; padding: 10px; border-top: 1px solid #ddd; }
+
+#chat-input { flex: 1; border: none; padding: 5px; outline: none; }
+
+.bot-msg { background: #165ebb; padding: 8px; border-radius: 10px; margin-bottom: 10px; width: fit-content; }
